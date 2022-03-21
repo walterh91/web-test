@@ -7,6 +7,6 @@ node{
             echo "crear imagen"
         }
         stage('Correr imagen'){
-            echo "correr imagen"
+            docker.image('walterh91/web-nginx').withRun('-p 80:80')
         }
 }
