@@ -1,5 +1,5 @@
-node{
-    def app
+pipeline{
+    agent any
     environment{
             tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
         }
