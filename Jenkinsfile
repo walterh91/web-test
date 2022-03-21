@@ -6,7 +6,12 @@ pipeline{
     stages{
         stage('Clone Repo'){
             steps{
-                sh 'echo $GIT_TAG'
+                checkout scm
+            }
+        }
+        stage('Crear imagen'){
+            steps{
+                sh 'docker build -t walterh91/web-nginx:$GIT_TAG .'
             }
         }
     }
