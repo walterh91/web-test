@@ -1,9 +1,9 @@
-pipeline{
-    agent any
+node{
+    def app
     environment{
             tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
         }
-    stages{
+    
         stage('Clone'){
             checkout scm
         }
@@ -16,5 +16,5 @@ pipeline{
         stage('Correr imagen'){
             sh 'docker run -p 81:80 -d --name web-test walterh91/web-nginx:${tag}'
         }
-    }
+    
 }
