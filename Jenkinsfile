@@ -4,7 +4,8 @@ node{
             checkout scm
         }
         stage('get code commit'){
-            GIT_COMMIT= sh('git log -1 --pretty=%H')
+            GIT_COMMIT= sh (script: 'git log -1 --pretty=%H')
+            echo "${GIT_COMMIT}"
         }
         stage('crear imagen'){
             
