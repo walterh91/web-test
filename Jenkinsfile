@@ -4,8 +4,8 @@ node{
             checkout scm
         }
         stage('crear imagen'){
-            tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
-            sh 'docker build -t walterh91/web-nginx:${tag} .'
+            //tag = sh(returnStdout: true, script: "").trim()
+            sh 'docker build -t walterh91/web-nginx:$(git rev-parse --short=10 HEAD) .'
         }
         stage('Detener contenedor si existiese'){
             sh 'docker rm -f web-test'
