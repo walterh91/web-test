@@ -1,10 +1,13 @@
 node{
     def app
+    enviroment
         stage('Clone'){
             checkout scm
         }
         stage('get code commit'){
-            tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
+            //tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
+            tag = sh(script: "git rev-parse --short=10 HEAD").trim()
+        
         }
         stage('crear imagen'){
             
