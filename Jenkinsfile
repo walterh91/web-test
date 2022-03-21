@@ -11,7 +11,7 @@ node{
             sh 'docker rm -f web-test'
         }
         stage('Correr imagen'){
-            sh 'docker run -p 81:80 -d --name web-test walterh91/web-nginx:${tag}'
+            sh 'docker run -p 81:80 -d --name web-test walterh91/web-nginx:$(git rev-parse --short=10 HEAD)'
         }
     
 }
