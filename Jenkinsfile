@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Clone Repo'){
             steps{
-                echo $GIT_TAG
+                sh 'echo $GIT_TAG'
             }
         }
     }
