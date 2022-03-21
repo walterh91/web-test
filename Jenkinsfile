@@ -1,16 +1,11 @@
-node{
-    def app
-        stage('Clone'){
-            checkout scm
+pipeline{
+    agent any
+    environment{
+        GIT_TAG = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
+    }
+    stages{
+        stage('Clone Repo'){
+            echo $GIT_TAG
         }
-        stage('crear imagen'){
-            sh 'docker build -t walterh91/web-nginx:$(git rev-parse --short=10 HEAD) .'
-        }
-        stage('Detener contenedor si existiese'){
-            sh 'docker rm -f web-test'
-        }
-        stage('Correr imagen'){
-            sh 'docker run -p 81:80 -d --name web-test walterh91/web-nginx:$(git rev-parse --short=10 HEAD)'
-        }
-    
+    }
 }
