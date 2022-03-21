@@ -3,6 +3,9 @@ node{
         stage('Clone'){
             checkout scm
         }
+        stage('get code commit'){
+            GIT_COMMIT= sh('git log -1 --pretty=%H')
+        }
         stage('crear imagen'){
             
             sh 'docker build -t walterh91/web-nginx:${GIT_COMMIT} .'
