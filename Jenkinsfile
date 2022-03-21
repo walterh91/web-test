@@ -1,13 +1,10 @@
 node{
     def app
-    environment{
-            tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
-        }
-    
-        stage('Clone'){
+          stage('Clone'){
             checkout scm
         }
         stage('crear imagen'){
+            tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
             sh 'docker build -t walterh91/web-nginx:${tag} .'
         }
         stage('Detener contenedor si existiese'){
