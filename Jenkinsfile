@@ -1,7 +1,7 @@
 node{
     def app
         stage('Clone'){
-            echo "check repo"
+            checkout scm
         }
         stage('crear imagen'){
             echo "crear imagen"
