@@ -14,5 +14,15 @@ pipeline{
                 sh 'docker build -t walterh91/web-nginx:$GIT_TAG .'
             }
         }
+        stage('Stop old container'){
+            steps{
+                sh 'docker rm -f web-test'
+            }
+        }
+        stage('Run new image'){
+            steps{
+                sh 'docker run -p 81:80 -d --name web-test walterh91/web-nginx:$GIT_TAG'
+            }
+        }
     }
 }
