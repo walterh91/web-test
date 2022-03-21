@@ -1,6 +1,6 @@
 node{
     def app
-    enviroment{
+    environment{
             tag = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim()
         }
     stages{
